@@ -1,0 +1,31 @@
+{% extends "Proyecto_apadrinar/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+    {% for persona in personas %}
+
+    <section class="page-section clearfix">
+        <div class="container">
+          
+           
+            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+              <h2 class="section-heading mb-4" >
+                <span class="section-heading-lower">{{persona.nombre}}</span>
+              </h2>
+              <p class="mb-3">{{persona.descripcion}}
+              </p>
+             
+            </div>
+          
+        </div>
+      </section>
+
+
+
+
+    {% endfor %}
+
+
+{% endblock %}
