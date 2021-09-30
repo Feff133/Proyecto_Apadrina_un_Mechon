@@ -1,17 +1,20 @@
 from django.shortcuts import render, HttpResponse
+from django.views.generic import TemplateView
+from django.views.generic.base import TemplateResponseMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from perfiles.models import Persona
+from perfiles.models import Persona_Auth
 
 # Create your views here.
 
-def login(request):
+#class HomePageView(LoginRequiredMixin, TemplateView):
+ #   def get(self, request,**kwargs):
+  #      return render(request,"index.html",context=None)
 
-    return render(request, "Proyecto_apadrinar/login.html")
 
 
-def blog(request):
 
-    return render(request, "Proyecto_apadrinar/blog.html")
+
 
 def inicio(request):
 
@@ -25,6 +28,3 @@ def actividades(request):
 
     return render(request, "Proyecto_apadrinar/actividades.html")
 
-def problemas(request):
-
-    return render(request, "Proyecto_apadrinar/problemas.html")

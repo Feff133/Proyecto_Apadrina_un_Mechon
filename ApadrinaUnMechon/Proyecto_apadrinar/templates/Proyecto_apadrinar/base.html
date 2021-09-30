@@ -1,3 +1,8 @@
+    <!--
+{% load static %}
+     Bootstrap 
+    <link href="{% static 'Proyecto_apadrinar/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  -->
 <html>
 
 <head>
@@ -15,6 +20,9 @@
 
     <!-- Styles -->
     <link href="{% static 'Proyecto_apadrinar/css/gestion.css' %}" rel="stylesheet">
+
+
+
 </head>
 
 <body>
@@ -25,17 +33,19 @@
       </h1>
 
 
+
+
  <!-- Navbar -->
  <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
     <div class="container">
-      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'Login' %}">Apadrina un Mechon</a>
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'login' %}">Apadrina un Mechon</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'Login' %}">Login</a>
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'login' %}">Login</a>
           </li>
           <li class="nav-item {% if request.path == '/Perfiles' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Perfiles' %}">Perfiles</a>
@@ -52,6 +62,10 @@
           <li class="nav-item {% if request.path == '/Problemas' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Problemas' %}">Reportar un problema</a>
           </li>
+          <li class="nav-item {% if request.path == '/Problemas' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'logout' %}">Cerrar sesion</a>
+          </li>
+
          
         </ul>
       </div>

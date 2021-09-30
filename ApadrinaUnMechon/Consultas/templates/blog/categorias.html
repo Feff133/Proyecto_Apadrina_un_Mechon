@@ -1,0 +1,78 @@
+{% extends "Proyecto_apadrinar/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<html>
+
+<head>
+
+<style>
+    h1 {text-align: center;}    
+    p {text-align: center;}
+        body{
+            background-image:url('https://image.freepik.com/free-photo/woman-with-book-thinking_23-2148418599.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+</style>
+
+</head>
+
+{% for post in posts %}
+
+<section class="page-section clearfix">
+    <div class="container">
+      
+       
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <p class="mb-3">Titulo:
+            </p>
+            <span class="section-heading-lower">{{post.Titulo}}</span>
+          </h2>
+          <p class="mb-3">Autor:
+          </p>
+          <p class="mb-3">{{post.autor}}
+          </p>
+          <p class="mb-3">Contenido:
+          </p>
+          <p class="mb-3">{{post.contenido}}
+          </p>
+         
+        </div>
+      
+    </div>
+  </section>
+
+
+
+
+{% endfor %}
+
+<section>
+  <div style="width: 75%; background-color:#bfbfbf; margin: auto; text-align: center;">
+  Categorias:
+    {% for post in posts %}
+
+      {% for categoria in post.categorias.all %}
+
+        {{categoria.nombre}}
+
+      {% endfor %}
+
+    {% endfor %}
+
+  </div>
+
+
+</section>
+
+
+
+</html>
+
+
+
+{% endblock %}

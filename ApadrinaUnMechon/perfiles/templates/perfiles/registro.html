@@ -1,0 +1,41 @@
+{% extends "Proyecto_apadrinar/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<html>
+
+<head>
+
+<style>
+    h1 {text-align: center;}    
+    p {text-align: center;}
+        body{
+            background-image:url('https://designthinking.gal/wp-content/uploads/2017/05/personas-731x330.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+</style>
+
+</head>
+
+
+
+<div class="contenedorFormulario">
+    {% if "valido" in request.GET %}
+        <p>A sido registrado exitosamente</p>
+
+    {% endif %}
+
+    <form action="" method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <table style="margin: 20px auto;">{{miFormulario.as_table}}</table>
+            <input type="submit" value="Enviar" style="width: 150px;">
+
+    </form>
+
+</div>
+
+
+{% endblock %}

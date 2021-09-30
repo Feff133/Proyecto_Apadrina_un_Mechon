@@ -1,0 +1,113 @@
+{% extends "Proyecto_apadrinar/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<form action="{% url 'login' %}" method="post">
+
+  {% csrf_token %}
+
+  <h1>Login de Usuario</h1>       
+
+  <div class="login-fields">              
+
+      <div class="field">
+
+          <label for="username">Username</label>
+
+          <input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" />
+
+      </div> <!-- /field -->
+
+
+      <div class="field">
+
+          <label for="password">Password:</label>
+
+          <input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field"/>
+
+      </div> <!-- /password -->
+
+  
+
+  </div> <!-- /login-fields -->
+
+  
+
+  <div class="login-actions">
+
+      
+
+      <span class="login-checkbox">
+
+          <input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />
+
+          <label class="choice" for="Field">Recordarme</label>
+
+      </span>
+
+                          
+
+      <button class="button btn btn-success btn-large">Ingresar</button>
+
+      
+
+  </div> <!-- .actions -->
+
+  
+
+
+
+  
+
+</form>
+
+
+
+
+
+
+<!--
+    Heading 
+   <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="mb-3">Ingreso a plataforma</span>
+          </h2>
+          <form action="{%url 'login' %}" method="POST">
+            {% csrf_token %}
+            <input type="username" placeholder="usuario">
+            <input type="password" placeholder="contrasena">
+            <button type="submit">Login</button>
+          </form>
+          
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+-->
+<!--
+    Message
+    <section class="page-section cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <div class="cta-inner text-center rounded">
+              <h2 class="section-heading mb-4">
+                <span class="section-heading-upper"></span>
+                <span class="section-heading-lower"></span>
+              </h2>
+              <p class="mb-0"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  -->
+{% endblock %}

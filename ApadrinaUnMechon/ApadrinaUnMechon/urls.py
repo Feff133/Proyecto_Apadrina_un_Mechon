@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Proyecto_apadrinar.urls')),
     path('perfiles/', include('perfiles.urls')),
+    path('blog/', include('Consultas.urls')),
+    path('reportar_problema/', include('reportar_problema.urls')),
 ]

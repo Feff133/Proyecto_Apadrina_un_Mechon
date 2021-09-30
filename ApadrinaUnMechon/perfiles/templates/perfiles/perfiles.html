@@ -3,8 +3,30 @@
 {% load static %}
 
 {% block content %}
+<html>
+
+<head>
+
+<style>
+    h1 {text-align: center;}    
+    p {text-align: center;}
+        body{
+            background-image:url('https://designthinking.gal/wp-content/uploads/2017/05/personas-731x330.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+</style>
+
+</head>
+
+
+
+</html>
 
     {% for persona in personas %}
+    
+
 
     <section class="page-section clearfix">
         <div class="container">
@@ -12,10 +34,19 @@
            
             <div class="intro-text left-0 text-center bg-faded p-5 rounded">
               <h2 class="section-heading mb-4" >
-                <span class="section-heading-lower">{{persona.nombre}}</span>
+                <p class="mb-3">Usuario:
+                </p>
+                <span class="section-heading-lower">{{persona.user}}</span>
               </h2>
+              <p class="mb-3">Descripcion:
+              </p>
               <p class="mb-3">{{persona.descripcion}}
               </p>
+              <p class="mb-3">Gusto personal:
+              </p>
+              <p class="mb-3">{{persona.get_gusto_display}}
+              </p>
+              <input type="submit" value="Solicitar apadrinamiento" style="width: 200px;">
              
             </div>
           
@@ -24,7 +55,7 @@
 
 
 
-
+      
     {% endfor %}
 
 

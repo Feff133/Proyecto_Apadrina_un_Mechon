@@ -1,0 +1,50 @@
+{% extends "Proyecto_apadrinar/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+   <!-- Heading -->
+   <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="mb-3">Bienvenido a apadrina un mechon</span>
+            <br>
+            <br>
+            { % if persona.is_authenticated % }
+                <h2>Bienvenido {{persona.nombre}}</h2>
+            { % endif % }
+               
+          
+            
+          
+          <!--<p class="mb-3">Apadrina un mechón es una plataforma web la cual permite a los alumnos nuevos ser apadrinados por alumnos antiguos de la misma carrera.
+          </p>-->
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!--
+    Message
+    <section class="page-section cta">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <div class="cta-inner text-center rounded">
+              <h2 class="section-heading mb-4">
+                <span class="section-heading-upper"></span>
+                <span class="section-heading-lower"></span>
+              </h2>
+              <p class="mb-0"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  -->
+{% endblock %}
