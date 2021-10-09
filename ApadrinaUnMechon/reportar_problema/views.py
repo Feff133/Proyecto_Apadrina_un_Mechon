@@ -6,6 +6,8 @@ from django.core.mail import EmailMessage
 # Create your views here.
 
 def problemas(request):
+    if not request.user.is_authenticated:
+        return render(request,'perfiles/login.html')
 
     formulario_problema = FormularioProblema()
 

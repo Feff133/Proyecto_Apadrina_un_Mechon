@@ -1,4 +1,4 @@
-{% extends "Proyecto_apadrinar/base.html" %}
+{% extends "Proyecto_apadrinar/base_login.html" %}
 
 {% load static %}
 
@@ -8,7 +8,71 @@
 <form action="{% url 'login' %}" method="post">
 
   {% csrf_token %}
+  <section class="page-section clearfix">
+    <div class="container">
+      <div class="intro">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+          <h2 class="section-heading mb-4" >
+            <span class="mb-3">Ingreso a portal</span>
+          </h2>
+          <div class="login-fields">              
 
+            <div class="field">
+      
+                <label for="username">Username</label>
+      
+                <input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" />
+      
+            </div> <!-- /field -->
+      
+      
+            <div class="field">
+      
+                <label for="password">Password:</label>
+      
+                <input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field"/>
+      
+            </div> <!-- /password -->
+      
+        
+      
+        </div> <!-- /login-fields -->
+      
+        
+      
+        <div class="login-actions">
+      
+            
+      
+            <span class="login-checkbox">
+      
+                <input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />
+      
+                <label class="choice" for="Field">Recordarme</label>
+      
+            </span>
+      
+                                
+      
+            <button class="button btn btn-success btn-large">Ingresar</button>
+      
+            
+      
+        </div> <!-- .actions -->
+      
+        
+        <a href="{% url 'registro'%}">Crear cuenta</a>
+
+
+
+          
+          
+         <!-- marcador -->
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- 
   <h1>Login de Usuario</h1>       
 
   <div class="login-fields">              
@@ -19,7 +83,7 @@
 
           <input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" />
 
-      </div> <!-- /field -->
+      </div> <!-- /field 
 
 
       <div class="field">
@@ -28,11 +92,11 @@
 
           <input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field"/>
 
-      </div> <!-- /password -->
+      </div> <!-- /password 
 
   
 
-  </div> <!-- /login-fields -->
+  </div> <!-- /login-fields 
 
   
 
@@ -54,12 +118,12 @@
 
       
 
-  </div> <!-- .actions -->
+  </div> <!-- .actions 
 
   
+  <a href="{% url 'registro'%}">Crear cuenta</a>
 
-
-
+  -->
   
 
 </form>

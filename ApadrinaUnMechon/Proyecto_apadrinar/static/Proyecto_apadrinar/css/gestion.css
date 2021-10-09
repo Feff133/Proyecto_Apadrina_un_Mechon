@@ -121,9 +121,11 @@ p {
   padding-right: 2rem;
 }
 
+
 .intro {
   position: relative;
 }
+
 
 @media (min-width: 992px) {
   .intro .intro-img {
@@ -291,4 +293,12 @@ ul.errorlist{
 
  padding: 1px 0px;
 
+}
+
+.TopContainer{
+  background-color: #7a1221;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10%;
 }

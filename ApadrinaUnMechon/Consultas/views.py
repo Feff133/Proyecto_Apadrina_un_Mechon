@@ -3,6 +3,8 @@ from Consultas.models import Post, Categoria
 
 # Create your views here.
 def blog(request):
+    if not request.user.is_authenticated:
+        return render(request,'perfiles/login.html')
 
     posts = Post.objects.all()
 
