@@ -8,14 +8,15 @@
 <head>
 
 <style>
-    h1 {text-align: center;}    
+
+  h1 {text-align: center;}    
     p {text-align: center;}
         body{
-            background-image:url('https://designthinking.gal/wp-content/uploads/2017/05/personas-731x330.jpg');
+            background-image:url('{% static "Proyecto_apadrinar/img/perfiles2.jpg"%}');
             background-repeat: no-repeat;
             background-size: cover;
         }
-
+  
 </style>
 
 </head>
@@ -25,37 +26,44 @@
 </html>
 
     {% for persona in personas %}
+      {% if user.persona_auth.carrera == persona.carrera %}
     
 
 
-    <section class="page-section clearfix">
-        <div class="container">
+        <section class="page-section clearfix">
+          <div class="container">
           
            
-            <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-              <h2 class="section-heading mb-4" >
-                <p class="mb-3">Usuario:
+              <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                <h2 class="section-heading mb-4" >
+                  <p class="mb-3">Usuario:
+                  </p>
+                  <span class="section-heading-lower">{{persona.user}}</span>
+                </h2>
+                <p class="mb-3">Descripcion:
                 </p>
-                <span class="section-heading-lower">{{persona.user}}</span>
-              </h2>
-              <p class="mb-3">Descripcion:
-              </p>
-              <p class="mb-3">{{persona.descripcion}}
-              </p>
-              <p class="mb-3">Gusto personal:
-              </p>
-              <p class="mb-3">{{persona.get_gusto_display}}
-              </p>
-              <input type="submit" value="Solicitar apadrinamiento" style="width: 200px;">
+                <p class="mb-3">{{persona.descripcion}}
+                </p>
+                <p class="mb-3">Gusto personal:
+                </p>
+                <p class="mb-3">{{persona.get_gusto_display}}
+                </p>
+                <form action="{% url 'vincular' %}" method="post">
+                  {% csrf_token %}
+
+                  <input type="hidden" name="dato" value="{{ persona.rut }}" style="width: 200px;">
+                  <input type="submit" value="Solicitar apadrinamiento" style="width: 200px;">
+                </form>
+              
              
-            </div>
+              </div>
           
-        </div>
-      </section>
+          </div>
+        </section>
 
 
+      {% endif %}
 
-      
     {% endfor %}
 
 

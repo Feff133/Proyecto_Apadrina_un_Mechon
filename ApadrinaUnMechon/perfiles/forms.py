@@ -6,8 +6,7 @@ from django.forms.widgets import PasswordInput, Widget
 tipo_alumno = [
     (0,'Padrino'),
     (1,'Mechon'),
-    (2,'Moderador'),
-    (3,'Super_padrino')
+
 ]
 
 gustos_alumnos = [
@@ -23,20 +22,36 @@ gustos_alumnos = [
     (9,'Matematicas'),
 ]
 
+carreras_u =[
+    (0,'Geologia'),
+    (1,'Ingenieria Civil'),
+    (2,'Ingenieria Civil en Minas'),
+    (3,'Ingenieria Civil Industrial'),
+    (4,'Ingenieria Civil Informatica'),
+    (5,'Ingenieria en Automatizacion y Robotica'),
+    (6,'Ingenieria en Computacion e informatica'),
+    (7,'Ingenieria en Costruccion'),
+    (8,'Ingenieria en Marina Mercante'),
+    (9,'Ingenieria Industrial'),
+
+]
+
 class FormularioRegistro(forms.Form):
 
-    rut = forms.CharField(label="Rut", required=True)
-    nombre = forms.CharField(label="Nombre", required=True)
-    usuario = forms.CharField(label="Usuario intranet",required=True)
-    password = forms.CharField(label="Password", required=True, widget = PasswordInput)
-    password2 = forms.CharField(label="Repetir Pasword",required=True, widget= PasswordInput)
-    apellido_pat = forms.CharField(label="Apellido_pat", required=True)
-    correo_ins = forms.EmailField(label="Correo_ins", required=True)
-    correo_per = forms.EmailField(label="Correo_per", required=True)
-    telefono = forms.CharField(label="Telefono", required=True)
-    descripcion = forms.CharField(label="Descripcion", required=True)
-    tipo = TypedChoiceField(label="Tipo", required=True, choices = tipo_alumno)
-    gusto = TypedChoiceField(label="Gusto", required=True, choices= gustos_alumnos)
+    rut = forms.CharField(label="Rut ", required=True)
+    nombre = forms.CharField(label="Nombre ", required=True)
+    usuario = forms.CharField(label="Usuario intranet ",required=True)
+    password = forms.CharField(label="Password ", required=True, widget = PasswordInput)
+    password2 = forms.CharField(label="Repetir Pasword ",required=True, widget= PasswordInput)
+    apellido_pat = forms.CharField(label="Apellido paterno ", required=True)
+    carrera = TypedChoiceField(label="Carrera Universitaria ", required=True, choices= carreras_u)
+    correo_ins = forms.EmailField(label="Correo institucional ", required=True)
+    correo_per = forms.EmailField(label="Correo personal ", required=True)
+    telefono = forms.CharField(label="Telefono ", required=True)
+    descripcion = forms.CharField(label="Descripcion ", required=True)
+    #tipo = TypedChoiceField(label="Tipo ", required=True, choices = tipo_alumno)
+    gusto = TypedChoiceField(label="Gusto ", required=True, choices= gustos_alumnos)
+    ingreso = forms.BooleanField(label="Eres nuevo?", required=True)
 
 
 """

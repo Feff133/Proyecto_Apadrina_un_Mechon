@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models.fields import CharField, IntegerField
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 # Create your models here.
 
@@ -24,6 +26,20 @@ gustos_alumnos = [
     (9,'Matematicas'),
 ]
 
+carreras_u =[
+    (0,'Geologia'),
+    (1,'Ingenieria Civil'),
+    (2,'Ingenieria Civil en Minas'),
+    (3,'Ingenieria Civil Industrial'),
+    (4,'Ingenieria Civil Informatica'),
+    (5,'Ingenieria en Automatizacion y Robotica'),
+    (6,'Ingenieria en Computacion e informatica'),
+    (7,'Ingenieria en Costruccion'),
+    (8,'Ingenieria en Marina Mercante'),
+    (9,'Ingenieria Industrial'),
+
+]
+
 """
 class Persona(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, null=False, blank=False, unique=True)
@@ -43,17 +59,26 @@ class Persona(models.Model):
 """
 class Persona_Auth(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, null=False, blank=False, unique=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     correo_per = models.EmailField(blank=True, null=True, verbose_name='Correo Personal')
     telefono = models.CharField(max_length=12, blank=True, null=True)
     descripcion = models.CharField(max_length=300,null=False,blank=False)
     tipo = models.IntegerField(choices = tipo_alumno)
     gusto = models.IntegerField(choices = gustos_alumnos, null= True)
-
+    carrera = models.IntegerField(choices= carreras_u ,null=False, blank=False)
+ 
     def __str__(self):
         return str(self.rut)
 
 class P_M(models.Model):
+    codigo = models.AutoField(primary_key=True,null=False,blank=False,unique=True)
     rut_p = models.ForeignKey('Persona_Auth', related_name='alumno_padrino', on_delete=models.CASCADE)
     rut_m = models.ForeignKey('Persona_Auth', related_name='alumno_mechon', on_delete=models.CASCADE)
+    fecha_creada = models.DateField(auto_now=False, auto_now_add=True)
+
+#@receiver(post_save, sender=User)
+#def create_user_profile(sender, instance,created,**kwargs):
+ #   if created:
+  #      Persona_Auth.objects.create(User=instance)
+
 

@@ -3,6 +3,7 @@
      Bootstrap 
     <link href="{% static 'Proyecto_apadrinar/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   -->
+
 <html>
 
 <head>
@@ -27,14 +28,17 @@
 
 <body>
 
+
+
     <h1 class="site-heading text-center text-white d-none d-lg-block">
       
         <span class="site-heading-lower">Apadrina un Mechon</span>
       </h1>
 
       <div class="TopContainer">
-        <a style="color: white;">Padrino</a>
-        <a style="color: white;">Nombre</a>
+        {% csrf_token %}
+        <a style="color: white;">{{user.persona_auth.tipo}}</a>
+        <a style="color: white;">{{user.username}}</a>
         <a href="{% url 'logout' %}">Salir</a>
       </div>
 
@@ -68,9 +72,7 @@
           <li class="nav-item {% if request.path == '/Problemas' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Problemas' %}">Reportar un problema</a>
           </li>
-          <li class="nav-item {% if request.path == '/Problemas' %}active{% endif %} px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="{% url 'logout' %}">Cerrar sesion</a>
-          </li>
+
 
          
         </ul>

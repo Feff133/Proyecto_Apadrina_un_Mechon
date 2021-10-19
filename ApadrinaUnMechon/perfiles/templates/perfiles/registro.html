@@ -11,7 +11,7 @@
     h1 {text-align: center;}    
     p {text-align: center;}
         body{
-            background-image:url('https://designthinking.gal/wp-content/uploads/2017/05/personas-731x330.jpg');
+            background-image:url('{% static "Proyecto_apadrinar/img/perfiles2.jpg"%}');
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -30,7 +30,12 @@
 
     <form action="" method="POST" style="text-align: center;">
         {% csrf_token %}
-        <table style="margin: 20px auto;">{{miFormulario.as_table}}</table>
+        <table style="margin: 20px auto; color: white;">{{miFormulario.as_table}}</table>
+            <p style="color:white;">Al hacer click en Enviar, aseguras haber leido y aceptado comportante segun dicta el 
+                <a href="{% static 'files/Reglamento-de-Conducta-para-la-Convivencia-de-la-Comunidad_.pdf' %}">Reglamento de Conducta para la Convivencia de la Comunidad</a>
+                y la
+                <a href="{% static 'files/Política-de-Convivencia-Inclusión-y-Promoción-del-Respeto.pdf' %}">Política de Convivencia Inclusión y Promoción del Respeto</a>
+            </p>
             <input type="submit" value="Enviar" style="width: 150px;">
 
     </form>
