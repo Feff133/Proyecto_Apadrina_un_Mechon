@@ -37,7 +37,7 @@
 
       <div class="TopContainer">
         {% csrf_token %}
-        <a style="color: white;">{{user.persona_auth.tipo}}</a>
+        <a style="color: white;">{{user.persona_auth.get_tipo_display}}</a>
         <a style="color: white;">{{user.username}}</a>
         <a href="{% url 'logout' %}">Salir</a>
       </div>
@@ -59,6 +59,9 @@
           </li>
           <li class="nav-item {% if request.path == '/Perfiles' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Perfiles' %}">Perfiles</a>
+          </li>
+          <li class="nav-item {% if request.path == '/Perfiles' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'solicitudes' %}">Solicitudes</a>
           </li>
           <li class="nav-item {% if request.path == '/Blog' %}active{% endif %} px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="{% url 'Blog' %}">Preguntas Mechones</a>
@@ -111,9 +114,9 @@
 	        </a>
 	    </p>
         <p class="m-0 mbt">
-        	<a href="sample.html" class="link">Política de privacidad</a> ·
-        	<a href="sample.html" class="link">Aviso legal</a> ·
-        	<a href="sample.html" class="link">Cookies</a>
+        	<a href="{% static 'files/Reglamento-de-Conducta-para-la-Convivencia-de-la-Comunidad_.pdf' %}" class="link">Reglamento de Conducta</a> ·
+        	<a href="{% static 'files/Política-de-Convivencia-Inclusión-y-Promoción-del-Respeto.pdf' %}" class="link">Politica de Convivencia</a> ·
+        	<a href="{% static 'files/Protocolo-de-prevencion-y-enfrentamiento-al-acoso-sexual-unab.pdf' %}" class="link">Protocolo de prevencion y enfrentamiento al acoso sexual</a>
 		</p>
         <p class="m-0 mbt1">&copy; Apadrina un mechon 2021</p>
       </div>

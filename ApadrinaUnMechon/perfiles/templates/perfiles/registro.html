@@ -20,13 +20,17 @@
 
 </head>
 
+{% if "valido" in request.GET %}
+    <div class="alert alert-primary" role="alert">
+        Usuario creado exitosamente
+    </div>
+
+{% endif %}
+
 
 
 <div class="contenedorFormulario">
-    {% if "valido" in request.GET %}
-        <p>A sido registrado exitosamente</p>
 
-    {% endif %}
 
     <form action="" method="POST" style="text-align: center;">
         {% csrf_token %}
@@ -34,7 +38,9 @@
             <p style="color:white;">Al hacer click en Enviar, aseguras haber leido y aceptado comportante segun dicta el 
                 <a href="{% static 'files/Reglamento-de-Conducta-para-la-Convivencia-de-la-Comunidad_.pdf' %}">Reglamento de Conducta para la Convivencia de la Comunidad</a>
                 y la
-                <a href="{% static 'files/Política-de-Convivencia-Inclusión-y-Promoción-del-Respeto.pdf' %}">Política de Convivencia Inclusión y Promoción del Respeto</a>
+                <a href="{% static 'files/Política-de-Convivencia-Inclusión-y-Promoción-del-Respeto.pdf' %}">Política de Convivencia Inclusión y Promoción del Respeto</a>,
+                ademas de que eres conciente de que en caso de necesitarse se utilizara el
+                <a href="{% static 'files/Protocolo-de-prevencion-y-enfrentamiento-al-acoso-sexual-unab.pdf' %}">Protocolo de prevencion y enfrentamiento al acoso sexual UNAB</a>.
             </p>
             <input type="submit" value="Enviar" style="width: 150px;">
 

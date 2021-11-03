@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import widgets
-from django.forms.fields import ChoiceField, TypedChoiceField
+from django.forms.fields import BooleanField, ChoiceField, TypedChoiceField
 from django.forms.widgets import PasswordInput, Widget
 
 tipo_alumno = [
@@ -40,18 +40,19 @@ class FormularioRegistro(forms.Form):
 
     rut = forms.CharField(label="Rut ", required=True)
     nombre = forms.CharField(label="Nombre ", required=True)
+    apellido_pat = forms.CharField(label="Apellido paterno ", required=True)
     usuario = forms.CharField(label="Usuario intranet ",required=True)
     password = forms.CharField(label="Password ", required=True, widget = PasswordInput)
     password2 = forms.CharField(label="Repetir Pasword ",required=True, widget= PasswordInput)
-    apellido_pat = forms.CharField(label="Apellido paterno ", required=True)
     carrera = TypedChoiceField(label="Carrera Universitaria ", required=True, choices= carreras_u)
     correo_ins = forms.EmailField(label="Correo institucional ", required=True)
     correo_per = forms.EmailField(label="Correo personal ", required=True)
     telefono = forms.CharField(label="Telefono ", required=True)
-    descripcion = forms.CharField(label="Descripcion ", required=True)
+    descripcion = forms.CharField(label="Descripcion ", required=True,widget=forms.Textarea)
     #tipo = TypedChoiceField(label="Tipo ", required=True, choices = tipo_alumno)
     gusto = TypedChoiceField(label="Gusto ", required=True, choices= gustos_alumnos)
-    ingreso = forms.BooleanField(label="Eres nuevo?", required=True)
+    ingreso = forms.BooleanField(label="Eres nuevo en la universidad?", required=False)
+
 
 
 """

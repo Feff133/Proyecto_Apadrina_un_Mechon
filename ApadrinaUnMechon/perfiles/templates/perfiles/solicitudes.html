@@ -1,0 +1,62 @@
+{% extends "Proyecto_apadrinar/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+
+    {% for solicitud in solicitudes %}
+        {% if solicitud.estado == 0 %}
+            <div class="col-md-3">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body" style="text-align: center;">
+                        {% if user.persona_auth.tipo == 0 %}
+
+                            <h7 class="card-title">{{solicitud.rut_m}}</h7>
+
+                            <p class="card-text">{{solicitud.get_estado_display}}</p>
+
+                            <form action="{% url 'aceptar' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="dato" value="{{ solicitud.codigo }}">
+                                <input type="submit" value="Aceptar solicitud">
+
+                            </form>
+
+                        {% elif user.persona_auth.tipo == 1%}
+
+                            <h7 class="card-title">{{solicitud.rut_p}}</h7>
+
+                            <p class="card-text">{{solicitud.get_estado_display}}</p>
+
+                            <input type="submit" value="Aceptar solicitud">
+
+                            <form action="{% url 'aceptar' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="dato" value="{{ solicitud.codigo }}">
+                                <input type="submit" value="Aceptar solicitud">
+
+                            </form>
+
+                        {% endif %}
+
+
+                        
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+            
+
+
+            
+
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

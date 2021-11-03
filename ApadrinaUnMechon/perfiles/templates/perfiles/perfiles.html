@@ -26,7 +26,8 @@
 </html>
 
     {% for persona in personas %}
-      {% if user.persona_auth.carrera == persona.carrera %}
+
+        {% if user.persona_auth.carrera == persona.carrera and user.persona_auth.tipo != persona.tipo %}
     
 
 
@@ -60,9 +61,10 @@
           
           </div>
         </section>
+      
 
+        {% endif %}
 
-      {% endif %}
 
     {% endfor %}
 

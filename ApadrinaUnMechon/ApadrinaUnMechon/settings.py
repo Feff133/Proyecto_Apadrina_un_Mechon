@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'perfiles',
     'Consultas',
     'reportar_problema',
+    'actividades',
 ]
 
 MIDDLEWARE = [

@@ -4,6 +4,13 @@
 
 {% block content %}
 
+{% if "valido" in request.GET %}
+    <div class="alert alert-primary" role="alert">
+        Usuario creado exitosamente
+    </div>
+
+{% endif %}
+
 
 <form action="{% url 'login' %}" method="post">
 

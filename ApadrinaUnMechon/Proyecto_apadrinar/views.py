@@ -24,7 +24,5 @@ def archivos(request):
 
     return render(request, "Proyecto_apadrinar/archivos.html")
 
-def actividades(request):
 
-    return render(request, "Proyecto_apadrinar/actividades.html")
 

@@ -40,6 +40,11 @@ carreras_u =[
 
 ]
 
+state = [
+    (0,"pendiente"),
+    (1,"activo"),
+]
+
 """
 class Persona(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, null=False, blank=False, unique=True)
@@ -74,7 +79,8 @@ class P_M(models.Model):
     codigo = models.AutoField(primary_key=True,null=False,blank=False,unique=True)
     rut_p = models.ForeignKey('Persona_Auth', related_name='alumno_padrino', on_delete=models.CASCADE)
     rut_m = models.ForeignKey('Persona_Auth', related_name='alumno_mechon', on_delete=models.CASCADE)
-    fecha_creada = models.DateField(auto_now=False, auto_now_add=True)
+    estado = models.IntegerField(choices=state, null=False, blank=False)
+    fecha_creada = models.DateField(auto_now=True)
 
 #@receiver(post_save, sender=User)
 #def create_user_profile(sender, instance,created,**kwargs):

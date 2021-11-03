@@ -1,0 +1,105 @@
+{% extends "Proyecto_apadrinar/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<html>
+
+<head>
+
+<style>
+    h1 {text-align: center;}    
+    p {text-align: center;}
+        body{
+            background-image:url('{% static "Proyecto_apadrinar/img/actividades.jpg"%}');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+</style>
+
+</head>
+
+</html>
+
+{% if "valido" in request.GET %}
+    <div class="alert alert-primary" role="alert">
+        Actividad creada exitosamente
+    </div>
+
+{% endif %}
+
+<div class="container" style="text-align: center;">
+    <a class="btn btn-success" href="{% url 'agendar' %}" role="button">Agendar actividad</a>
+</div>
+
+<div class="container">
+    <div class="row">
+
+    {% for actividad in actividades %}
+        <!--{% if solicitud.estado == 0 %}-->
+            <div class="col-md-3">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body" style="text-align: center;">
+                        {% if user.persona_auth.tipo == 0 %}
+
+                            <h7 class="card-title">{{actividad.rut_m}}</h7>
+
+                            <p class="card-text">{{actividad.get_estado_display}}</p>
+
+                            <p class="card-text">{{actividad.descripcion}}</p>
+
+                            <p class="card-text">{{actividad.fecha_agendada}}</p>
+
+                            <form action="{% url 'aceptar' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="dato" value="{{ actividad.id }}">
+                                <input type="submit" value="Revisar actividad">
+
+                            </form>
+
+                        {% elif user.persona_auth.tipo == 1%}
+
+                            <h7 class="card-title">{{actividad.rut_p}}</h7>
+
+                            <p class="card-text">{{actividad.get_estado_display}}</p>
+
+                            <p class="card-text">{{actividad.descripcion}}</p>
+
+                            <p class="card-text">{{actividad.fecha_agendada}}</p>
+
+                            <input type="submit" value="Revisar actividad">
+
+                            <form action="{% url 'aceptar' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="dato" value="{{ actividad.id }}">
+                                <input type="submit" value="Aceptar solicitud">
+
+                            </form>
+
+                        {% endif %}
+
+
+                        
+
+                    </div>
+                </div>
+            </div>
+       <!-- {% endif %} -->
+
+            
+
+
+            
+
+    {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

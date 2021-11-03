@@ -8,6 +8,8 @@ urlpatterns = [
     path('login/', views.login_view, name="login"),
     path('logout/', views.logout_view, name="logout"),
     path('vincular/', views.vincular, name="vincular"),
+    path('solicitudes/', views.solicitudes, name="solicitudes"),
+    path('aceptar/', views.aceptar, name="aceptar"),
     #path('load/', views.load_data, name="load_data"),
     
 ]
