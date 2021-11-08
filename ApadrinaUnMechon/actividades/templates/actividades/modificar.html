@@ -1,0 +1,50 @@
+{% extends "Proyecto_apadrinar/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<html>
+
+<head>
+
+<style>
+    h1 {text-align: center;}    
+    p {text-align: center;}
+        body{
+            background-image:url('{% static "Proyecto_apadrinar/img/actividades.jpg"%}');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+</style>
+
+</head>
+
+</html>
+
+<div class="contenedorFormulario">
+
+
+    <form action="" method="POST" style="text-align: center;">
+        {% csrf_token %}
+        <table style="margin: 20px auto; color: white;">{{formulario.as_table}}</table>
+            <p style="color:white;">Recuerda en todo momento comportarte segun dicta el 
+                <a href="{% static 'files/Reglamento-de-Conducta-para-la-Convivencia-de-la-Comunidad_.pdf' %}">Reglamento de Conducta para la Convivencia de la Comunidad</a>
+                y la
+                <a href="{% static 'files/Política-de-Convivencia-Inclusión-y-Promoción-del-Respeto.pdf' %}">Política de Convivencia Inclusión y Promoción del Respeto</a>,
+                ademas de que, en caso de necesitarse, se utilizara el
+                <a href="{% static 'files/Protocolo-de-prevencion-y-enfrentamiento-al-acoso-sexual-unab.pdf' %}">Protocolo de prevencion y enfrentamiento al acoso sexual UNAB</a>.
+            </p>
+            <input class="btn btn-success" type="submit" value="Agendar actividad" style="width: 150px;">
+
+    </form>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}

@@ -13,6 +13,20 @@ def actividades(request):
 
     return render(request, "actividades/actividades.html",{'actividades':act})
 
+def modificar_a(request):
+    if request.POST:
+        rev = Actividad.objects.get(id = request.POST['dato'])
+
+    return render(request, "actividades/modificar.html",{'actividad':rev})
+
+def completar_a(request):
+    if request.POST:
+        act = Actividad.objects.get(id = request.POST['dato'])
+        act.estado = 1
+        act.save()
+
+    return redirect("/actividades/?completado")
+
 def agendar_actividad(request):
 
     formulario_actividad = FormularioActividad()
@@ -27,14 +41,16 @@ def agendar_actividad(request):
             hora_a = request.POST.get("hora_actividad")
             desc = request.POST.get("descripcion")
 
+            current_user = request.user
+            creadapor = current_user.first_name
+
             usuario = Persona_Auth.objects.get(user=request.user)
 
             if usuario.tipo == 0:
-                print(fecha_a)
-
+                
                 otro = P_M.objects.get(rut_p = usuario.rut, estado=1)
                 
-                a = Actividad(nombre = nom, descripcion = desc, estado=0, rut_p=usuario, rut_m = otro.rut_m, fecha_agendada = fecha_a, hora = hora_a)
+                a = Actividad(nombre = nom, descripcion = desc, estado=0, rut_p=usuario, rut_m = otro.rut_m,creada_por = creadapor, fecha_agendada = fecha_a, hora = hora_a)
                 a.save()
 
                 return redirect("/actividades/?valido")
@@ -43,7 +59,7 @@ def agendar_actividad(request):
 
                 otro = P_M.objects.get(rut_m = usuario.rut, estado=1)
                 
-                a = Actividad(nombre = nom, descripcion = desc, estado=0, rut_p=otro.rut_p, rut_m = usuario, fecha_agendada = fecha_a, hora = hora_a)
+                a = Actividad(nombre = nom, descripcion = desc, estado=0, rut_p=otro.rut_p, rut_m = usuario, creada_por = creadapor, fecha_agendada = fecha_a, hora = hora_a)
                 a.save()
 
                 return redirect("/actividades/?valido")

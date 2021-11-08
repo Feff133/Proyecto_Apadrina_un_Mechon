@@ -16,6 +16,7 @@ class Actividad(models.Model):
     estado = models.IntegerField(choices=estados, null=False)
     rut_p = models.ForeignKey('perfiles.Persona_Auth', related_name='alumno_pad', on_delete=models.CASCADE)
     rut_m = models.ForeignKey('perfiles.Persona_Auth', related_name='alumno_mec', on_delete=models.CASCADE)
+    creada_por = models.CharField(max_length=40,null=False)
     fecha_creada = models.DateTimeField(auto_now_add=True)
     fecha_agendada = models.DateField(blank=False)
     hora = models.TimeField(blank=False)
