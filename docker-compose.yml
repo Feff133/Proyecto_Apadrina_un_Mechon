@@ -1,0 +1,21 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: apadrinaunmechon
+      POSTGRES_USER: aum_user
+      POSTGRES_PASSWORD: 00bb28eaf259ba0c932d67f649d90783
+
+  web:
+    build: .
+    image: base_container
+    command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0:8000"
+    volumes:
+      - ./src:/code
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
