@@ -144,8 +144,8 @@ def load_data(request):
         {
             'first_name': 'Felipe',
             'last_name':'Fuentes',
-            'username':'f.fuentesbaez3',
-            'password':'apadrina1234',
+            'username':'f.fuentesbaez',
+            'password':'7481025fF',
             'email':'f.fuentesbaez@uandresbello.edu',
             'datos':{
                 'rut': '20.428.832-1',          
@@ -154,7 +154,7 @@ def load_data(request):
                 'descripcion':'Descripcion generica',
                 'tipo':0,
                 'gusto':0,
-                'carrera':0,
+                'carrera':6,
             }
 
         },
@@ -206,6 +206,23 @@ def load_data(request):
                 'tipo':1,
                 'gusto':0,
                 'carrera':0,
+            }
+
+        },
+        {
+            'first_name': 'Nicolas',
+            'last_name':'Roca',
+            'username':'n.rocasanhueza',
+            'password':'apadrina1234',
+            'email':'n.rocasanhueza@uandresbello.edu',
+            'datos':{
+                'rut': '20.204.184-1',          
+                'correo_per':'manuel.fuentes.t@gmail.com',
+                'telefono':987654321,
+                'descripcion':'Descripcion generica',
+                'tipo':1,
+                'gusto':0,
+                'carrera':6,
             }
 
         },

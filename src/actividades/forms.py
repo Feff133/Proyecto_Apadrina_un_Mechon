@@ -8,7 +8,7 @@ from django.forms.widgets import DateInput, DateTimeInput, PasswordInput, Select
 
 class FormularioActividad(forms.Form):
     nombre = forms.CharField(label="Actividad que se realizara ",required=True)
-    fecha_actividad = forms.DateField(label="Dia (dd-mm-aa)",required=True)
+    fecha_actividad = forms.DateField(label="Dia (aa-mm-dd)",required=True)
     hora_actividad = forms.TimeField(label="Hora (Hora:Minutos)",required=True,widget=forms.TimeInput(format='%H:%M'))
     descripcion = forms.CharField(label="Descripcion ",required=True, widget=forms.Textarea)
 

@@ -19,6 +19,7 @@ def modificar_a(request):
 
     return render(request, "actividades/modificar.html",{'actividad':rev})
 
+#completar actividad
 def completar_a(request):
     if request.POST:
         act = Actividad.objects.get(id = request.POST['dato'])
@@ -26,6 +27,15 @@ def completar_a(request):
         act.save()
 
     return redirect("/actividades/?completado")
+
+#cancelar actividad
+def cancelar_a(request):
+    if request.POST:
+        act = Actividad.objects.get(id = request.POST['dato'])
+        act.estado = 2
+        act.save()
+
+    return redirect("/actividades/?cancelada")
 
 def agendar_actividad(request):
 

@@ -7,5 +7,6 @@ urlpatterns = [
     path('agendar/',views.agendar_actividad, name="agendar"),
     path('modificar/',views.modificar_a, name="modificar"),
     path('completar/',views.completar_a, name="completar"),
+    path('cancelar/',views.cancelar_a, name="cancelar"),
 
 ]
