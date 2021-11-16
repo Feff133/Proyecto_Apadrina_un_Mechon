@@ -81,10 +81,7 @@ class P_M(models.Model):
     rut_m = models.ForeignKey('Persona_Auth', related_name='alumno_mechon', on_delete=models.CASCADE)
     estado = models.IntegerField(choices=state, null=False, blank=False)
     fecha_creada = models.DateField(auto_now=True)
+    sender = models.CharField(max_length=100)
 
-#@receiver(post_save, sender=User)
-#def create_user_profile(sender, instance,created,**kwargs):
- #   if created:
-  #      Persona_Auth.objects.create(User=instance)
 
 

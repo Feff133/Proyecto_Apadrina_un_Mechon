@@ -14,31 +14,38 @@
                     <div class="card-body" style="text-align: center;">
                         {% if user.persona_auth.tipo == 0 %}
 
-                            <h7 class="card-title">{{solicitud.rut_m}}</h7>
+                            <h7 class="card-title">Solicitud de parte de: {{solicitud.sender}}</h7>
 
-                            <p class="card-text">{{solicitud.get_estado_display}}</p>
 
-                            <form action="{% url 'aceptar' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="dato" value="{{ solicitud.codigo }}">
-                                <input type="submit" value="Aceptar solicitud">
+                            <p class="card-text"> Estado: {{solicitud.get_estado_display}}</p>
 
-                            </form>
+                            {% if solicitud.sender != user.username %}
 
-                        {% elif user.persona_auth.tipo == 1%}
+                                <form action="{% url 'aceptar' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="dato" value="{{ solicitud.codigo }}">
+                                    <input type="submit" value="Aceptar solicitud">
 
-                            <h7 class="card-title">{{solicitud.rut_p}}</h7>
+                                </form>
+                            {% endif %}
 
-                            <p class="card-text">{{solicitud.get_estado_display}}</p>
+                        {% elif user.persona_auth.tipo == 1 %}
+
+                            <h7 class="card-title">Solicitud de parte de: {{solicitud.sender}}</h7>
+
+                            <p class="card-text"> Estado: {{solicitud.get_estado_display}}</p>
 
                             <input type="submit" value="Aceptar solicitud">
 
-                            <form action="{% url 'aceptar' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="dato" value="{{ solicitud.codigo }}">
-                                <input type="submit" value="Aceptar solicitud">
+                            {% if solicitud.sender != user.username %}
 
-                            </form>
+                                <form action="{% url 'aceptar' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="dato" value="{{ solicitud.codigo }}">
+                                    <input type="submit" value="Aceptar solicitud">
+
+                                </form>
+                            {% endif %}
 
                         {% endif %}
 

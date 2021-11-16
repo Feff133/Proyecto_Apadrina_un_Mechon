@@ -58,10 +58,14 @@ def logout_view(request):
 def vincular(request):
     if request.POST:
         apadrinado =Persona_Auth(pk=request.POST['dato'])
-        #usuario =Persona_Auth(user=request.user)
+        current_u = request.user
         usuario = Persona_Auth.objects.get(user=request.user)
-        relacion = P_M(rut_p=usuario, rut_m=apadrinado, estado=0)
-        relacion.save()
+        if usuario.tipo == 0:
+            relacion = P_M(rut_p=usuario, rut_m=apadrinado, estado=0,sender=current_u.username)
+            relacion.save()
+        elif usuario.tipo == 1:
+            relacion = P_M(rut_p=apadrinado, rut_m=usuario, estado=0,sender=current_u.username)
+            relacion.save()
 
     return redirect("Perfiles")
 
@@ -99,12 +103,14 @@ def registro(request):
             
 
             if Pass == Pass2:
+                #casilla activada
                 if ingreso == "on":
                     tipo_u = 1
                     c_user = User(username = usuario, email = C_ins, password = Pass, first_name = Nom, last_name = Ap_pat)
                     c_user.save()
                     p = Persona_Auth(rut = Rut, user = c_user , correo_per = C_per, telefono = Tel, descripcion = Desc, tipo = tipo_u, gusto = Gust, carrera = Carr)
                     p.save()
+                #casilla desactivada
                 elif ingreso == None:
                     tipo_u = 0
                     c_user = User(username = usuario, email = C_ins, password = Pass, first_name = Nom, last_name = Ap_pat)
@@ -125,10 +131,16 @@ def solicitudes(request):
     if not request.user.is_authenticated:
         return render(request,'perfiles/login.html')
 
-    solici = P_M.objects.all()
-    usuarios = User.objects.all()
+    current_u = Persona_Auth.objects.get(user=request.user) 
 
-    return render(request, "perfiles/solicitudes.html",{'solicitudes':solici,'usuarios':usuarios})
+    if current_u.tipo == 0:
+        solici = P_M.objects.filter(rut_p=current_u.rut)
+        return render(request, "perfiles/solicitudes.html",{'solicitudes':solici})
+    elif current_u.tipo == 1:
+        solici = P_M.objects.filter(rut_m=current_u.rut)
+        return render(request, "perfiles/solicitudes.html",{'solicitudes':solici})
+
+
 
 def aceptar(request):
 
