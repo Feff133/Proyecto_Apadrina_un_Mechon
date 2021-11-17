@@ -46,6 +46,13 @@
 
 {% endif %}
 
+{% if "modificada" in request.GET %}
+    <div class="alert alert-success" role="alert">
+        Actividad modificada exitosamente
+    </div>
+
+{% endif %}
+
 <div class="container" style="text-align: center;">
     <a class="btn btn-success" href="{% url 'agendar' %}" role="button">Agendar actividad</a>
     <div class="row">

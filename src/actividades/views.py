@@ -13,11 +13,29 @@ def actividades(request):
 
     return render(request, "actividades/actividades.html",{'actividades':act})
 
+#formulario modificar actividad
 def modificar_a(request):
     if request.POST:
         rev = Actividad.objects.get(id = request.POST['dato'])
+        formulario = FormularioActividad()
 
-    return render(request, "actividades/modificar.html",{'actividad':rev})
+        if formulario.is_valid():
+            nom = request.POST.get("nombre")
+            fecha_a = request.POST.get("fecha_actividad")
+            hora_a = request.POST.get("hora_actividad")
+            desc = request.POST.get("descripcion")
+
+            rev.nombre = nom
+            rev.fecha_agendada = fecha_a
+            rev.hora = hora_a
+            rev.descripcion = desc
+                
+            rev.save()
+
+            return redirect("/actividades/?modificada")
+
+    return render(request, "actividades/modificar.html",{'actividad':rev,'formulario':formulario})
+
 
 #completar actividad
 def completar_a(request):
