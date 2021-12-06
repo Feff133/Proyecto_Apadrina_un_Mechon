@@ -20,9 +20,6 @@ def inicio(request):
 
     return render(request, "Proyecto_apadrinar/inicio.html")
 
-def archivos(request):
-
-    return render(request, "Proyecto_apadrinar/archivos.html")
 
 
 
