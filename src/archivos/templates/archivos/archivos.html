@@ -22,6 +22,12 @@
 </head>
 </html>
 
+{% if "borrado" in request.GET %}
+    <div class="alert alert-primary" role="alert">
+        Archivo borrado
+    </div>
+
+{% endif %}
 
 <div class="container" style="text-align: center;">
     <a class="btn btn-success" href="{% url 'Subir_archivo' %}" role="button">Subir archivo</a>
@@ -29,19 +35,44 @@
     <table class="table table-dark">
         <thead>
             <tr>
-                <th scope="col">Nombre archivo</th>
+                <th scope="col">Link archivo</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody>
             {% for Archivo in Archivos %}
+                    <!-- Modal eliminar -->
+                    <div class="modal fade" id="Modalborrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Una vez realizada esta acción, el vínculo se borrará y tendrás que subirlo nuevamente si quieres compartirlo.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{% url 'borrar' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="dato" value="{{ Archivo.id }}">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <input type="submit" class="btn btn-success" type="submit" value="Borrar Archivo">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
             <tr>
-                <th scope="row">{{Archivo.archivo}}</th>
+                <th scope="row"><a href={{Archivo.archivo}}>{{Archivo.nombre}}</a></th>
                 <td>{{Archivo.descripcion}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary"><i class="bi bi-download"></i></button>
-                    <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalborrar"><i class="bi bi-trash"></i></button>
                 </td>
             </tr>
             {% endfor %}
