@@ -6,7 +6,7 @@ urlpatterns = [
     path('',views.archivos, name="Archivos"),
     path('subida/',views.subir_archivo,name="Subir_archivo"),
     path('borrar/',views.borrar_a,name="borrar"),
-    
+    path('modificar/',views.modificar_a,name="modificar_archivo"),
 
 
 ]

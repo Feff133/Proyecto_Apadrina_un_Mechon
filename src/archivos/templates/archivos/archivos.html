@@ -29,6 +29,21 @@
 
 {% endif %}
 
+{% if "modificado" in request.GET %}
+    <div class="alert alert-primary" role="alert">
+        Archivo modificado exitosamente
+    </div>
+
+{% endif %}
+
+{% if "subido" in request.GET %}
+    <div class="alert alert-primary" role="alert">
+        Archivo subido exitosamente
+    </div>
+
+{% endif %}
+
+
 <div class="container" style="text-align: center;">
     <a class="btn btn-success" href="{% url 'Subir_archivo' %}" role="button">Subir archivo</a>
 
@@ -43,7 +58,7 @@
         <tbody>
             {% for Archivo in Archivos %}
                     <!-- Modal eliminar -->
-                    <div class="modal fade" id="Modalborrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="Modalborrar{{ Archivo.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -68,11 +83,51 @@
                         </div>
                     </div>
 
+                    <!-- Modal modificar -->
+                    <div class="modal fade" id="Modalmodificar{{ Archivo.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modificar Archivo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'modificar_archivo' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                          <label for="recipient-name" class="col-form-label">Nombre descriptivo:</label>
+                                            <input type="text" class="form-control" placeholder="{{ Archivo.nombre }}" name="nombre_a" >
+
+                                          <label for="recipient-name" class="col-form-label">Link del archivo:</label>
+                                            <input type="text" class="form-control" placeholder="{{ Archivo.archivo }}" name="link_a">
+
+                                          <label for="message-text" class="col-form-label">Descripción:</label>
+                                            <textarea class="form-control" placeholder="{{ Archivo.descripcion }}" name="desc_a" ></textarea>
+
+                                        </div>
+                              
+                                <div class="modal-footer">
+                                        <input type="hidden" name="dato" value="{{ Archivo.id }}">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <input type="submit" class="btn btn-success" type="submit" value="Modificar Archivo">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+            <!-- Fila de tabla -->
             <tr>
                 <th scope="row"><a href={{Archivo.archivo}}>{{Archivo.nombre}}</a></th>
                 <td>{{Archivo.descripcion}}</td>
                 <td>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalborrar"><i class="bi bi-trash"></i></button>
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modalmodificar{{ Archivo.id }}"><i class="bi bi-pencil-square"></i></button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalborrar{{ Archivo.id }}"><i class="bi bi-trash"></i></button>
+
                 </td>
             </tr>
             {% endfor %}

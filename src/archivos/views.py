@@ -18,11 +18,26 @@ def borrar_a(request):
     
     return redirect("/archivos/?borrado")
 
+def modificar_a(request):
+    if request.POST:
+        arc = Archivo.objects.get(id = request.POST['dato'])
+        nomb_a = request.POST['nombre_a']
+        lin_a = request.POST['link_a']
+        des_a = request.POST['desc_a']
+
+        arc.nombre = nomb_a
+        arc.archivo = lin_a
+        arc.descripcion = des_a
+
+        arc.save()
+
+        return redirect("/archivos/?modificado")
+
 def subir_archivo(request):
     formulario = FormularioArchivos()
 
     if request.method == "POST":
-        formulario = FormularioArchivos(request.POST, request.FILES)
+        formulario = FormularioArchivos(request.POST)
         if formulario.is_valid():
             nomb = request.POST.get("nombre")
             archi = request.POST.get("archivo")
@@ -31,6 +46,6 @@ def subir_archivo(request):
             arch = Archivo(nombre = nomb, archivo = archi, descripcion = desc, estado = 0)
             arch.save()
 
-            return redirect("Archivos")
+            return redirect("/archivos/?subido")
 
     return render(request, "archivos/subida.html",{'formulario':formulario})

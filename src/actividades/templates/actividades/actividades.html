@@ -59,7 +59,7 @@
 
         {% for actividad in actividades %}
     <!-- Modal completar -->
-    <div class="modal fade" id="Modalcompletar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="Modalcompletar{{ actividad.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -85,7 +85,7 @@
     </div>
 
     <!-- Modal cancelar -->
-    <div class="modal fade" id="Modalcancelar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="Modalcancelar{{ actividad.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -109,8 +109,49 @@
             </div>
         </div>
     </div>
+    
+        <!-- Modal modificar -->
+        <div class="modal fade" id="Modalmodificar{{ actividad.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modificar Actividad</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{% url 'modificar' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Actividad que se realizara:</label>
+                                <input type="text" class="form-control" placeholder="{{ actividad.nombre }}" name="nombre_a" >
+    
+                              <label for="recipient-name" class="col-form-label">Dia (aa-mm-dd):</label>
+                                <input type="text" class="form-control" placeholder="{{ actividad.fecha_agendada }}" name="dia_a">
+    
+                              <label for="message-text" class="col-form-label">Hora (Hora:Minutos):</label>
+                                <input type="text" class="form-control" placeholder="{{ actividad.hora }}" name="hora_a"> 
+    
+                              <label for="message-text" class="col-form-label">Descripcion:</label>
+                                <textarea class="form-control" placeholder="{{ actividad.descripcion }}" name="desc_a" ></textarea>
+    
+                            </div>
+                  
+                    <div class="modal-footer">
+                            <input type="hidden" name="dato" value="{{ actividad.id }}">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <input type="submit" class="btn btn-success" type="submit" value="Modificar Archivo">
+    
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
         
-            
+            <!-- Cartas de actividades -->
                 <div class="col-md-3">
                     <div class="card" style="width: 100%;">
                         <div class="card-body" style="text-align: center;">
@@ -131,18 +172,11 @@
 
                                 {% if actividad.estado == 0 %}
 
-                                    <form action="{% url 'modificar' %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="dato" value="{{ actividad.id }}">
-                                        <input class="btn btn-warning" type="submit" value="Modificar actividad">
-    
-                                    </form>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Modalmodificar{{ actividad.id }}">Modificar actividad</button>
 
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalcompletar">Completar actividad</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalcompletar{{ actividad.id }}">Completar actividad</button>
 
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalcancelar">Cancelar actividad</button>
-    
-
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalcancelar{{ actividad.id }}">Cancelar actividad</button>
 
                                 {% endif %}
                                 
@@ -163,16 +197,11 @@
 
                                 {% if actividad.estado == 0 %}
     
-                                    <form action="{% url 'modificar' %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="dato" value="{{ actividad.id }}">
-                                        <input class="btn btn-warning" type="submit" value="Modificar actividad">
-    
-                                    </form>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#Modalmodificar{{ actividad.id }}">Modificar actividad</button>
 
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalcompletar">Completar actividad</button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modalcompletar{{ actividad.id }}">Completar actividad</button>
 
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalcancelar">Cancelar actividad</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modalcancelar{{ actividad.id }}">Cancelar actividad</button>
                                     
                                 {% endif %}
 
