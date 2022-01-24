@@ -13,3 +13,4 @@ class Archivo(models.Model):
     archivo = models.URLField(null=False, blank=False)
     descripcion = models.CharField(max_length=100)
     estado = models.IntegerField(choices=estados)
+    subido_por = models.CharField(max_length=100)

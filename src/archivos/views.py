@@ -24,10 +24,12 @@ def modificar_a(request):
         nomb_a = request.POST['nombre_a']
         lin_a = request.POST['link_a']
         des_a = request.POST['desc_a']
+        current_u = request.user
 
         arc.nombre = nomb_a
         arc.archivo = lin_a
         arc.descripcion = des_a
+        arc.subido_por = current_u
 
         arc.save()
 
