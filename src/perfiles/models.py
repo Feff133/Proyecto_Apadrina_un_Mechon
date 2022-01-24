@@ -70,6 +70,7 @@ class Persona_Auth(models.Model):
     descripcion = models.CharField(max_length=300,null=False,blank=False)
     tipo = models.IntegerField(choices = tipo_alumno)
     gusto = models.IntegerField(choices = gustos_alumnos, null= True)
+    #interes = models.IntegerField(choices = gustos_alumnos, null= True)
     carrera = models.IntegerField(choices= carreras_u ,null=False, blank=False)
  
     def __str__(self):

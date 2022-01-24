@@ -1,5 +1,6 @@
+from select import select
 from django import forms
-from django.forms import widgets
+from django.forms import RadioSelect, widgets
 from django.forms.fields import BooleanField, ChoiceField, TypedChoiceField
 from django.forms.widgets import PasswordInput, Widget
 
@@ -50,7 +51,8 @@ class FormularioRegistro(forms.Form):
     telefono = forms.CharField(label="Telefono ", required=True)
     descripcion = forms.CharField(label="Descripcion ", required=True,widget=forms.Textarea)
     #tipo = TypedChoiceField(label="Tipo ", required=True, choices = tipo_alumno)
-    gusto = TypedChoiceField(label="Gusto ", required=True, choices= gustos_alumnos)
+    gusto = TypedChoiceField(label="Interes Personal ", required=True, choices= gustos_alumnos,widget=RadioSelect)
+    #interes = TypedChoiceField(label="Gusto ", required=True, choices= gustos_alumnos,widget=RadioSelect)
     ingreso = forms.BooleanField(label="Eres nuevo en la universidad?", required=False)
 
 

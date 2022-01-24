@@ -100,6 +100,7 @@ def registro(request):
             Desc = request.POST.get("descripcion")
             ingreso = request.POST.get("ingreso")
             Gust = request.POST.get("gusto")
+            #Gust2 = request.POST.get("interes")
             
 
             if Pass == Pass2:
@@ -107,6 +108,7 @@ def registro(request):
                 if ingreso == "on":
                     tipo_u = 1
                     c_user = User(username = usuario, email = C_ins, password = Pass, first_name = Nom, last_name = Ap_pat)
+                    c_user.set_password(Pass)
                     c_user.save()
                     p = Persona_Auth(rut = Rut, user = c_user , correo_per = C_per, telefono = Tel, descripcion = Desc, tipo = tipo_u, gusto = Gust, carrera = Carr)
                     p.save()
@@ -114,6 +116,7 @@ def registro(request):
                 elif ingreso == None:
                     tipo_u = 0
                     c_user = User(username = usuario, email = C_ins, password = Pass, first_name = Nom, last_name = Ap_pat)
+                    c_user.set_password(Pass)
                     c_user.save()
                     p = Persona_Auth(rut = Rut, user = c_user , correo_per = C_per, telefono = Tel, descripcion = Desc, tipo = tipo_u, gusto = Gust, carrera = Carr)
                     p.save()
