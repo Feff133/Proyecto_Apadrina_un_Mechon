@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from .forms import FormularioArchivos
 from.models import Archivo
+from perfiles.models import Persona_Auth
 
 # Create your views here.
 
@@ -24,12 +25,10 @@ def modificar_a(request):
         nomb_a = request.POST['nombre_a']
         lin_a = request.POST['link_a']
         des_a = request.POST['desc_a']
-        current_u = request.user
 
         arc.nombre = nomb_a
         arc.archivo = lin_a
         arc.descripcion = des_a
-        arc.subido_por = current_u
 
         arc.save()
 
@@ -44,8 +43,11 @@ def subir_archivo(request):
             nomb = request.POST.get("nombre")
             archi = request.POST.get("archivo")
             desc = request.POST.get("descripcion")
+            current_u = request.user
 
-            arch = Archivo(nombre = nomb, archivo = archi, descripcion = desc, estado = 0)
+            upl_by = Persona_Auth.objects.get(user = current_u)
+
+            arch = Archivo(nombre = nomb, archivo = archi, descripcion = desc, estado = 0, subido_por = upl_by)
             arch.save()
 
             return redirect("/archivos/?subido")
